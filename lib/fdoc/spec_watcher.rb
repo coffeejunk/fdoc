@@ -32,6 +32,14 @@ module Fdoc
           {}
         end
       end
+      json_params = if request_params.kind_of?(Hash)
+                      request_params.to_json
+                    else
+                      request_params
+                    end
+      JSON.parse json_params
+    rescue
+      {}
     end
 
     def path
